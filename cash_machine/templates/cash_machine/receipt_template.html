@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чек №{{ receipt_id }}</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .receipt {
+            width: 100%;
+            max-width: 300px;
+            padding: 20px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            margin: auto;
+        }
+
+        .receipt-header {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .receipt-body {
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 3px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            width: 60%;
+        }
+
+        td {
+            width: 20%;
+        }
+
+        .total-row {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .stars {
+            font-size: 24px; /* Увеличен размер шрифта для звездочек */
+            margin-top: 10px;
+            width: 100%; /* Убедились, что ширина 100% */
+            text-align: center; /* Центрирование звездочек по ширине */
+            display: block;
+            overflow: hidden; /* Убираем лишние символы, выходящие за пределы */
+            white-space: nowrap; /* Звездочки не будут переноситься */
+            box-sizing: border-box; /* Чтобы отступы и границы не выходили за пределы */
+        }
+
+
+
+        .line {
+            border-top: 1px solid #000;
+            margin-top: 10px;
+        }
+
+        .company-info {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .company-info .right-align {
+            text-align: right;
+        }
+
+        /* Добавление адаптивности */
+        @media (max-width: 320px) {
+            body {
+                font-size: 12px;
+            }
+
+            .receipt {
+                padding: 15px;
+                max-width: 280px;
+            }
+
+            th, td {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="receipt-header">
+            <h2>Кассовый чек</h2>
+            <p>Чек №{{ receipt_id }}</p>
+            <p>Дата: {{ time }}</p>
+        </div>
+
+        <div class="company-info">
+            <p>ООО: "Компани"</p>
+            <p>ККН: 34636277</p>
+            <p>ИНН: 708435633245</p>
+            <div class="right-align">
+                <p>ЭКЛЗ: 656565784</p>
+            </div>
+        </div>
+
+        <div class="receipt-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Кол-во</th>
+                        <th>Стоимость</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td colspan="3"><strong>{{ item.title }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Количество: {{item.quantity}}</td>
+                        <td></td>
+                        <td>Цена: {{ item.total_price|floatformat:2 }} ₽</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="total-row">
+            <strong>Итого: {{ total|floatformat:2 }} ₽</strong>
+        </div>
+
+        <div class="stars">
+            <p>******************************</p>
+        </div>
+
+
+        <div class="receipt-footer">
+            <p>Спасибо за покупку!</p>
+            <p>До новых встреч!</p>
+        </div>
+    </div>
+</body>
+</html>
