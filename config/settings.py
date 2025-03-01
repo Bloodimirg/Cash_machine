@@ -99,3 +99,10 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+PDFKIT_CONFIG = {
+    "wkhtmltopdf": "/path/to/wkhtmltopdf",
+}
+
+# изменить ip - для проверки ссылки QR кода с телефона
+SITE_URL = os.getenv("SITE_URL")
