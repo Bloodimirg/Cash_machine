@@ -1,0 +1,26 @@
+[
+  {
+    "model": "cash_machine.item",
+    "pk": 1,
+    "fields": {
+      "title": "Товар 1",
+      "price": 100
+    }
+  },
+  {
+    "model": "cash_machine.item",
+    "pk": 2,
+    "fields": {
+      "title": "Товар 2",
+      "price": 200
+    }
+  },
+  {
+    "model": "cash_machine.item",
+    "pk": 3,
+    "fields": {
+      "title": "Товар 3",
+      "price": 300
+    }
+  }
+]
