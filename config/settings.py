@@ -99,6 +99,9 @@ STATICFILES_DIRS = (BASE_DIR / "static",)
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# создаем папку media при запуске сервера
+if not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
